@@ -80,7 +80,7 @@ Copy code
   "name": "John Doe",
   "email": "john.doe@example.com",
   "password": "password123",
-  "confirm_password": "password123"
+  "password_confirmation": "password123"
 }
 Response:
 json

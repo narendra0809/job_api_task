@@ -12,7 +12,8 @@ class AuthController extends Controller
 {
     // Register a new user
     public function register(Request $request)
-    {
+{
+    try {
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -26,11 +27,16 @@ class AuthController extends Controller
         ]);
 
         return response()->json(['user' => $user, 'token' => $user->createToken('API Token')->plainTextToken]);
+    } catch (ValidationException $e) {
+        return response()->json([
+            'errors' => $e->errors()
+        ], 422);
     }
+}
 
-    
-    public function login(Request $request)
-    {
+public function login(Request $request)
+{
+    try {
         $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string',
@@ -46,6 +52,12 @@ class AuthController extends Controller
             'user' => Auth::user(),
             'token' => Auth::user()->createToken('API Token')->plainTextToken,
         ]);
+    } catch (ValidationException $e) {
+        return response()->json([
+            'errors' => $e->errors()
+        ], 422);
     }
+}
+
 }
 
