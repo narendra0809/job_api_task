@@ -20,7 +20,7 @@ Clone the Repository
 
 bash
 Copy code
-git clone https://github.com/narendra0809/task_job_api.git
+git clone https://github.com/narendra0809/job_api_task.git
 cd task_job_api
 Install Dependencies
 
